@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>v-watermark</title>
+  <style type="text/css">
+    body {
+      margin-bottom: 200px;
+    }
+
+    code {
+      display: block;
+      padding: 8px 15px;
+      background-color: #f6f8fa;
+      border-radius: 5px;
+      border: 1px solid #e5e5e5;
+      overflow-x: auto;
+      font-family: Monaco, Bitstream Vera Sans Mono, Lucida Console, Terminal;
+      color: #333;
+      font-size: 12px;
+    }
+
+    p,
+    ul,
+    ol,
+    table,
+    pre,
+    dl {
+      margin: 0 0 20px;
+    }
+
+    h1 {
+      color: #4AB7BD;
+      font-size: 60px;
+      text-align: center
+    }
+
+    h3 {
+      font-size: 36px;
+      color: #494949;
+      line-height: 1.1;
+    }
+
+    .github-corner:hover .octo-arm {
+      animation: octocat-wave 560ms ease-in-out
+    }
+
+    @keyframes octocat-wave {
+      0%,
+      100% {
+        transform: rotate(0)
+      }
+      20%,
+      60% {
+        transform: rotate(-25deg)
+      }
+      40%,
+      80% {
+        transform: rotate(10deg)
+      }
+    }
+
+    @media (max-width: 500px) {
+      .github-corner:hover .octo-arm {
+        animation: none
+      }
+
+      .github-corner .octo-arm {
+        animation: octocat-wave 560ms ease-in-out
+      }
+    }
+
+    #app {
+      margin: 20px;
+    }
+
+    .container {
+      width: 980px;
+      margin-right: auto;
+      margin-left: auto;
+    }
+
+    .example-item {
+      margin-bottom: 80px;
+    }
+
+    .example1 {
+      font-size: 40px;
+      color: #30B08F;
+      display: block;
+      margin: 10px 0;
+    }
+
+    .example2 {
+      font-size: 40px;
+      color: #E65D6E;
+      display: block;
+      margin: 10px 0;
+    }
+
+    .example3 {
+      font-size: 50px;
+      color: #F6416C;
+      display: block;
+      margin: 10px 0;
+      text-align: center;
+      font-size: 80px;
+      font-weight: 500;
+    }
+
+    .label {
+      width: 96px;
+      color: #2f4f4f;
+      font-size: 16px;
+      display: inline-block;
+      /*margin: 15px 30px 15px 0;*/
+    }
+
+    input {
+      position: relative;
+      display: inline-block;
+      margin: 15px 30px 15px 0;
+      padding: 4px 7px;
+      width: 50px;
+      height: 28px;
+      cursor: text;
+      font-size: 12px;
+      line-height: 1.5;
+      color: rgba(0, 0, 0, .65);
+      background-color: #fff;
+      background-image: none;
+      border: 1px solid #d9d9d9;
+      border-radius: 4px;
+      -webkit-transition: all .3s;
+      transition: all .3s;
+    }
+
+  </style>
+</head>
+
+<body>
+<a href="https://github.com/shenyizhou/v-watermark" class="github-corner"
+   aria-label="View source on Github">
+  <svg width="80" height="80" viewBox="0 0 250 250"
+       style="fill:#4AB7BD; color:#fff; position: absolute; top: 0; border: 0; right: 0;"
+       aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+    <path
+      d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+      fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+    <path
+      d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+      fill="currentColor" class="octo-body"></path>
+  </svg>
+</a>
+<div id="app">
+  <h1>V Watermark</h1>
+  <div class='container'>
+    <div class="example-item">
+      <h3>example</h3>
+      <v-watermark class="example1"
+                   :width="width" :height="height" :row="row" :column="column"
+                   :item-width="itemWidth" :item-heigth="itemHeight" :text="text" :angle="angle"
+                   :x-start="xStart" :x-space="xSpace" :y-start="yStart" :y-space="ySpace"
+                   :fontSize="fontSize" font="font" :color="color" :alpha="alpha">
+        <img src='./src/asserts/ace.webp'/>
+      </v-watermark>
+      <div>
+        <label class="label" for="widthInput">width:
+        </label>
+        <input class="input" type="number" v-model.number='width' id='widthInput'/>
+        <label class="label" for="heightInput">height:
+        </label>
+        <input class="input" type="number" v-model.number='height' id='heightInput'/>
+        <label class="label" for="rowInput">row:
+        </label>
+        <input class="input" type="number" v-model.number='row' id='rowInput'/>
+        <label class="label" for="columnInput">column:
+        </label>
+        <input class="input" type="number" v-model.number='column' id='columnInput'/>
+        <br/>
+        <label class="label" for="itemWidthInput">item-width:
+        </label>
+        <input class="input" type="number" v-model.number='itemWidth' id='itemWidthInput'/>
+        <label class="label" for="itemHeightInput">item-height:
+        </label>
+        <input class="input" type="number" v-model.number='itemHeight' id='itemHeightInput'/>
+        <label class="label" for="textInput">text:
+        </label>
+        <input class="input" type="text" v-model='text' id='textInput'/>
+        <label class="label" for="angleInput">angle:
+        </label>
+        <input class="input" type="number" v-model.number='angle' id='angleInput'/>
+        <br/>
+        <label class="label" for="xStartInput">x-start:
+        </label>
+        <input class="input" type="number" v-model.number='xStart' id='xStartInput'/>
+        <label class="label" for="yStartInput">y-start:
+        </label>
+        <input class="input" type="number" v-model.number='yStart' id='yStartInput'/>
+        <label class="label" for="xSpaceInput">x-space:
+        </label>
+        <input class="input" type="number" v-model.number='xSpace' id='xSpaceInput'/>
+        <label class="label" for="ySpaceInput">y-space:
+        </label>
+        <input class="input" type="number" v-model.number='ySpace' id='ySpaceInput'/>
+        <br/>
+        <label class="label" for="fontSizeInput">font-size:
+        </label>
+        <input class="input" type="text" v-model='fontSize' id='fontSizeInput'/>
+        <label class="label" for="fontInput">font:
+        </label>
+        <input class="input" type="text" v-model='font' id='fontInput'/>
+        <label class="label" for="colorInput">color:
+        </label>
+        <input class="input" type="text" v-model='color' id='colorInput'/>
+        <label class="label" for="alphaInput">alpha:
+        </label>
+        <input class="input" type="number" v-model.number='alpha' id='alphaInput'/>
+        <br/>
+      </div>
+      <code>
+        &lt;v-watermark class=&quot;example1&quot;
+          :width=&quot;{{width}}px&quot; :height=&quot;{{height}}px&quot; :row=&quot;{{row}}&quot; :column=&quot;{{column}}&quot;
+          :item-width=&quot;{{itemWidth}}px&quot; :item-height=&quot;{{itemHeight}}px&quot; :text=&quot;{{text}}&quot; :angle=&quot;{{angle}}&quot;
+          :x-start=&quot;{{xStart}}&quot; :y-start=&quot;{{yStart}}&quot; :x-space=&quot;{{xSpace}}&quot; :y-space=&quot;{{ySpace}}&quot;
+          :font-size=&quot;{{fontSize}}&quot; font=&quot;{{font}}&quot; :color=&quot;{{color}}&quot; :alpha=&quot;{{alpha}}&quot;&gt;
+          &lt;img src=&#x27;./src/asserts/ace.webp&#x27;/&gt;
+        &lt;/v-watermark&gt;
+      </code>
+    </div>
+  </div>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<script src="./dist/v-watermark.min.js"></script>
+<script>
+  const Main = {
+    name: 'test',
+    data() {
+      return {
+        width: 960,
+        height: 540,
+        row: 0,
+        column: 0,
+        itemWidth: 120,
+        itemHeight: 80,
+        text: '水印',
+        angle: -15,
+        xStart: 0,
+        yStart: 0,
+        xSpace: 0,
+        ySpace: 0,
+        fontSize: '20px',
+        font: '微软雅黑',
+        color: '#000000',
+        alpha: 0.3
+      }
+    }
+  }
+
+  const Ctor = Vue.extend(Main)
+  new Ctor().$mount('#app')
+
+</script>
+</body>
+
+</html>
