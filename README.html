@@ -1,0 +1,223 @@
+<style type="text/css">
+  pre {
+    display: block;
+    padding: 8px 15px;
+    background-color: #f6f8fa;
+    border-radius: 5px;
+    border: 1px solid #e5e5e5;
+    overflow-x: auto;
+    font-family: Monaco, Bitstream Vera Sans Mono, Lucida Console, Terminal;
+    color: #333;
+    font-size: 12px;
+  }
+
+  p,
+  ul,
+  ol,
+  table,
+  pre,
+  dl {
+    margin: 0 0 20px;
+  }
+
+  h1 {
+    color: #4AB7BD;
+    font-size: 60px;
+    text-align: center
+  }
+
+  h3 {
+    font-size: 36px;
+    color: #494949;
+    line-height: 1.1;
+  }
+
+  #app {
+    margin: 20px;
+  }
+
+  .container {
+    width: 980px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .example-item {
+    margin-bottom: 80px;
+  }
+
+  .label {
+    width: 96px;
+    color: #2f4f4f;
+    font-size: 16px;
+    display: inline-block;
+  }
+
+  input {
+    position: relative;
+    display: inline-block;
+    margin: 15px 30px 15px 0;
+    padding: 4px 7px;
+    width: 50px;
+    height: 28px;
+    cursor: text;
+    font-size: 12px;
+    line-height: 1.5;
+    color: rgba(0, 0, 0, .65);
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+  }
+
+</style>
+<div id="app">
+    <h1>V Watermark</h1>
+    <div class="container">
+      <div class="example-item">
+        <v-watermark :width="width" :height="height" :row="row" :column="column" :item-width="itemWidth" :item-heigth="itemHeight"
+          :text="text" :angle="angle" :x-start="xStart" :x-space="xSpace" :y-start="yStart" :y-space="ySpace" :font-size="fontSize"
+          :font="font" :color="color" :alpha="alpha" :full-screen="fullScreen" class="example1">
+          <img v-if="!fullScreen" :style="{
+            width: width > 0 ? width + 'px' : 'auto',
+            height: height > 0 ? height + 'px' : 'auto',
+          }" src="./src/asserts/ace.webp" />
+        </v-watermark>
+        <div>
+          <label class="label" for="widthInput">
+            width:
+          </label>
+          <input v-model.number="width" id="widthInput" class="input" type="number" />
+          <label class="label" for="heightInput">
+            height:
+          </label>
+          <input v-model.number="height" id="heightInput" class="input" type="number" />
+          <label class="label" for="rowInput">
+            row:
+          </label>
+          <input v-model.number="row" id="rowInput" class="input" type="number" />
+          <label class="label" for="columnInput">
+            column:
+          </label>
+          <input v-model.number="column" id="columnInput" class="input" type="number" />
+          <br/>
+          <label class="label" for="itemWidthInput">
+            item-width:
+          </label>
+          <input v-model.number="itemWidth" id="itemWidthInput" class="input" type="number" />
+          <label class="label" for="itemHeightInput">
+            item-height:
+          </label>
+          <input v-model.number="itemHeight" id="itemHeightInput" class="input" type="number" />
+          <label class="label" for="textInput">
+            text:
+          </label>
+          <input v-model="text" id="textInput" class="input" type="text" />
+          <label class="label" for="angleInput">
+            angle:
+          </label>
+          <input v-model.number="angle" id="angleInput" class="input" type="number" />
+          <br/>
+          <label class="label" for="xStartInput">
+            x-start:
+          </label>
+          <input v-model.number="xStart" id="xStartInput" class="input" type="number" />
+          <label class="label" for="yStartInput">
+            y-start:
+          </label>
+          <input v-model.number="yStart" id="yStartInput" class="input" type="number" />
+          <label class="label" for="xSpaceInput">
+            x-space:
+          </label>
+          <input v-model.number="xSpace" id="xSpaceInput" class="input" type="number" />
+          <label class="label" for="ySpaceInput">
+            y-space:
+          </label>
+          <input v-model.number="ySpace" id="ySpaceInput" class="input" type="number" />
+          <br/>
+          <label class="label" for="fontSizeInput">
+            font-size:
+          </label>
+          <input v-model="fontSize" id="fontSizeInput" class="input" type="text" />
+          <label class="label" for="fontInput">
+            font:
+          </label>
+          <input v-model="font" id="fontInput" class="input" type="text" />
+          <label class="label" for="colorInput">
+            color:
+          </label>
+          <input v-model="color" id="colorInput" class="input" type="text" />
+          <label class="label" for="alphaInput">
+            alpha:
+          </label>
+          <input v-model.number="alpha" id="alphaInput" class="input" type="number" />
+          <br/>
+          <label class="label">
+            full-screen:
+          </label>
+          <select v-model="fullScreen" name="fullScreenSelect" id="fullScreenSelect">
+            <option :value="true">是</option>
+            <option :value="false">否</option>
+          </select>
+        </div>
+        <pre>
+&lt;v-watermark
+  :width=&quot;{{width}}&quot;
+  :height=&quot;{{height}}&quot;
+  :row=&quot;{{row}}&quot;
+  :column=&quot;{{column}}&quot;
+  :item-width=&quot;{{itemWidth}}&quot;
+  :item-height=&quot;{{itemHeight}}&quot;
+  :text=&quot;{{text}}&quot;
+  :angle=&quot;{{angle}}&quot;
+  :x-start=&quot;{{xStart}}&quot;
+  :y-start=&quot;{{yStart}}&quot;
+  :x-space=&quot;{{xSpace}}&quot;
+  :y-space=&quot;{{ySpace}}&quot;
+  :font-size=&quot;{{fontSize}}&quot;
+  :font=&quot;{{font}}&quot;
+  :color=&quot;{{color}}&quot;
+  :alpha=&quot;{{alpha}}&quot;
+  :full-screen=&quot;{{fullScreen}}&quot;
+  class=&quot;example1&quot;
+&gt;
+  &lt;img src=&#x27;./src/asserts/ace.webp&#x27;/&gt;
+&lt;/v-watermark&gt;</pre>
+      </div>
+    </div>
+  </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <script src="./dist/v-watermark.min.js"></script>
+  <script>
+    const Main = {
+      name: 'test',
+      data() {
+        return {
+          width: 0,
+          height: 0,
+          row: 0,
+          column: 0,
+          itemWidth: 120,
+          itemHeight: 80,
+          text: '水印',
+          angle: -15,
+          xStart: 0,
+          yStart: 0,
+          xSpace: 0,
+          ySpace: 0,
+          fontSize: '20px',
+          font: '微软雅黑',
+          color: '#000000',
+          alpha: 0.3,
+          fullScreen: false
+        }
+      }
+    }
+
+    const Ctor = Vue.extend(Main)
+    new Ctor().$mount('#app')
+
+  </script>
